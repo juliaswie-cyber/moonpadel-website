@@ -352,11 +352,7 @@
 
       <div class="card">
         <a href="lunar.html" style="text-decoration:none; color:inherit; display:block;">
-        <div class="carousel carousel-mini" data-carousel>
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/lunar.jpg" alt="Lunar racket"></div>
-          </div>
-        </div>
+        <div class="racket-art"><img src="images/lunar.jpg" alt="Lunar racket"></div>
         <div class="tag">Comfort &amp; Forgiveness</div>
         <h3>Lunar</h3>
         <div class="desc">Soft, smooth and effortless for relaxed control from every position.</div></a>
@@ -367,14 +363,7 @@
 
       <div class="card">
         <a href="eclipse.html" style="text-decoration:none; color:inherit; display:block;">
-        <div class="carousel carousel-mini" data-carousel>
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/eclipse.jpg" alt="Eclipse racket"></div>
-            <div class="carousel-slide"><img src="images/eclipse-action-2.jpg" alt="Eclipse racket in action, volley"></div>
-            <div class="carousel-slide"><img src="images/eclipse-action-1.jpg" alt="Eclipse racket in action, serve"></div>
-            <div class="carousel-slide"><img src="images/eclipse-detail-1.jpg" alt="Eclipse racket close-up detail"></div>
-          </div>
-        </div>
+        <div class="racket-art"><img src="images/eclipse.jpg" alt="Eclipse racket"></div>
         <div class="tag">Maximum Control</div>
         <h3>Eclipse</h3>
         <div class="desc">Composed, stable and precise with a forgiving centred sweet spot.</div></a>
@@ -385,15 +374,7 @@
 
       <div class="card">
         <a href="supernova.html" style="text-decoration:none; color:inherit; display:block;">
-        <div class="carousel carousel-mini" data-carousel>
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/supernova.jpg" alt="Supernova racket"></div>
-            <div class="carousel-slide"><img src="images/supernova-detail-1.jpg" alt="Supernova racket close-up detail"></div>
-            <div class="carousel-slide"><img src="images/supernova-action-1.jpg" alt="Supernova racket in action, diving shot"></div>
-            <div class="carousel-slide"><img src="images/supernova-action-2.jpg" alt="Supernova racket held on court"></div>
-            <div class="carousel-slide"><img src="images/supernova-action-3.jpg" alt="Supernova racket in action, forehand"></div>
-          </div>
-        </div>
+        <div class="racket-art"><img src="images/supernova.jpg" alt="Supernova racket"></div>
         <div class="tag">Power + Control</div>
         <h3>Supernova</h3>
         <div class="desc">Balanced aggression for players who defend, construct and finish the point.</div></a>
@@ -404,11 +385,7 @@
 
       <div class="card">
         <a href="supernovax.html" style="text-decoration:none; color:inherit; display:block;">
-        <div class="carousel carousel-mini" data-carousel>
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/supernovax.jpg" alt="Supernova X racket"></div>
-          </div>
-        </div>
+        <div class="racket-art"><img src="images/supernovax.jpg" alt="Supernova X racket"></div>
         <div class="tag">Maximum Power</div>
         <h3>Supernova X</h3>
         <div class="desc">Explosive, firm and immediate. Built for aggressive finishers.</div></a>
@@ -461,111 +438,20 @@
          3. Save and redeploy (netlify deploy --prod)
          That's the whole process - no other code needs to change.
          ============================================================ -->
-    <div class="carousel carousel-main" data-carousel data-dots="true">
-      <div class="carousel-track">
-        <div class="carousel-slide"><img src="images/lunar.jpg" alt="Lunar racket" data-lb-group="homepage-gallery"></div>
-        <div class="carousel-slide"><img src="images/eclipse.jpg" alt="Eclipse racket" data-lb-group="homepage-gallery"></div>
-        <div class="carousel-slide"><img src="images/supernova.jpg" alt="Supernova racket" data-lb-group="homepage-gallery"></div>
-        <div class="carousel-slide"><img src="images/supernovax.jpg" alt="Supernova X racket" data-lb-group="homepage-gallery"></div>
-        <div class="carousel-slide"><img src="images/craft.jpg" alt="Moon Padel racket being hand-finished in Spain" data-lb-group="homepage-gallery"></div>
-        <div class="carousel-slide"><img src="images/overgrip.jpg" alt="Moon Padel Ultra Premium Overgrip" data-lb-group="homepage-gallery"></div>
-        <div class="carousel-slide"><img src="images/eclipse-action-2.jpg" alt="Eclipse racket in action, volley" data-lb-group="homepage-gallery"></div>
-        <div class="carousel-slide"><img src="images/supernova-action-1.jpg" alt="Supernova racket in action, diving shot" data-lb-group="homepage-gallery"></div>
-      </div>
-      <!-- To add a photo: paste a new <div class="carousel-slide"><img src="images/yourfile.jpg" alt="..." data-lb-group="homepage-gallery"></div> line above -->
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-item"><img src="images/lunar.jpg" alt="Lunar racket" data-lb-group="homepage-gallery"></div>
+      <div class="gallery-item"><img src="images/eclipse.jpg" alt="Eclipse racket" data-lb-group="homepage-gallery"></div>
+      <div class="gallery-item"><img src="images/supernova.jpg" alt="Supernova racket" data-lb-group="homepage-gallery"></div>
+      <div class="gallery-item"><img src="images/supernovax.jpg" alt="Supernova X racket" data-lb-group="homepage-gallery"></div>
+      <div class="gallery-item"><img src="images/craft.jpg" alt="Moon Padel racket being hand-finished in Spain" data-lb-group="homepage-gallery"></div>
+      <div class="gallery-item"><img src="images/overgrip.jpg" alt="Moon Padel Ultra Premium Overgrip" data-lb-group="homepage-gallery"></div>
+      <div class="gallery-item"><img src="images/eclipse-action-2.jpg" alt="Eclipse racket in action, volley" data-lb-group="homepage-gallery"></div>
+      <div class="gallery-item"><img src="images/supernova-action-1.jpg" alt="Supernova racket in action, diving shot" data-lb-group="homepage-gallery"></div>
+      <!-- To add a photo: copy one line above, paste it here, and change the filename -->
     </div>
   </div>
 </section>
 
-<style>
-  .carousel{position:relative;}
-  .carousel-main{max-width:640px; margin:0 auto;}
-  .carousel-track{
-    display:flex; overflow:hidden; border-radius:10px; background:#0d0f13;
-  }
-  .carousel-main .carousel-track{aspect-ratio:4/3;}
-  .carousel-slide{
-    min-width:100%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
-  }
-  .carousel-slide img{width:100%; height:100%; object-fit:cover; object-position:top center; cursor:zoom-in; display:block;}
-  .carousel-arrow{
-    position:absolute; top:50%; transform:translateY(-50%); background:rgba(11,14,20,0.6);
-    color:#F5F4F0; display:flex; align-items:center; justify-content:center; cursor:pointer;
-    user-select:none; border-radius:50%; z-index:5;
-  }
-  .carousel-main .carousel-arrow{font-size:28px; width:42px; height:42px;}
-  .carousel-arrow:hover{background:rgba(11,14,20,0.85);}
-  .carousel-prev{left:12px;}
-  .carousel-next{right:12px;}
-  .carousel-dots{display:flex; justify-content:center; gap:7px; margin-top:14px;}
-  .carousel-dot{width:7px; height:7px; border-radius:50%; background:#3a3f4a; cursor:pointer;}
-  .carousel-dot.active{background:#E8E6E0;}
-
-  /* Mini carousels used on product cards */
-  .carousel-mini{margin-bottom:18px;}
-  .carousel-mini .carousel-track{height:230px; border-radius:8px;}
-  .carousel-mini .carousel-arrow{font-size:16px; width:26px; height:26px; opacity:0; transition:opacity .2s;}
-  .carousel-mini:hover .carousel-arrow{opacity:1;}
-  .carousel-mini .carousel-prev{left:8px;}
-  .carousel-mini .carousel-next{right:8px;}
-</style>
-
-<script>
-(function(){
-  function initCarousel(root){
-    const track = root.querySelector('.carousel-track');
-    const slides = Array.from(root.querySelectorAll('.carousel-slide'));
-    let current = 0;
-
-    function goTo(i){
-      current = (i + slides.length) % slides.length;
-      track.style.transform = 'translateX(-' + (current * 100) + '%)';
-      track.style.transition = 'transform .35s ease';
-      root.querySelectorAll(':scope > .carousel-dots .carousel-dot').forEach((d, idx) => d.classList.toggle('active', idx === current));
-    }
-
-    // Only add controls if there's more than one photo
-    if (slides.length > 1) {
-      const prev = document.createElement('span');
-      prev.className = 'carousel-arrow carousel-prev';
-      prev.innerHTML = '&#8249;';
-      const next = document.createElement('span');
-      next.className = 'carousel-arrow carousel-next';
-      next.innerHTML = '&#8250;';
-      root.appendChild(prev);
-      root.appendChild(next);
-
-      prev.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); goTo(current - 1); });
-      next.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); goTo(current + 1); });
-
-      if (root.dataset.dots === 'true') {
-        const dotsWrap = document.createElement('div');
-        dotsWrap.className = 'carousel-dots';
-        slides.forEach((_, i) => {
-          const dot = document.createElement('span');
-          dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-          dot.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); goTo(i); });
-          dotsWrap.appendChild(dot);
-        });
-        root.appendChild(dotsWrap);
-      }
-
-      // touch swipe support
-      let startX = null;
-      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-      track.addEventListener('touchend', e => {
-        if (startX === null) return;
-        const diff = e.changedTouches[0].clientX - startX;
-        if (diff > 40) goTo(current - 1);
-        else if (diff < -40) goTo(current + 1);
-        startX = null;
-      });
-    }
-  }
-
-  document.querySelectorAll('[data-carousel]').forEach(initCarousel);
-})();
-</script>
 
 
 <section class="section">
