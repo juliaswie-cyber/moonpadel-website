@@ -49,7 +49,7 @@
     backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(255,255,255,0.08);
   }
-  nav{display:flex; align-items:center; justify-content:space-between; padding:90px 28px;}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:140px 28px;}
   .logo{display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond',serif; font-size:19px; letter-spacing:2px;}
   .logo svg{width:22px; height:22px;}
   .navlinks{display:flex; gap:34px; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--grey);}
@@ -311,7 +311,7 @@
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;">
       <div>
         <div style="border-radius:10px; overflow:hidden; background:#0d0f13;">
-          <img src="images/supernova.jpg" alt="Supernova racket" style="width:100%; display:block;">
+          <img src="images/supernova.jpg" alt="Supernova racket" style="width:100%; display:block;" data-lb-group="product-gallery">
         </div>
         <div class="gallery-grid" style="margin-top:12px; grid-template-columns:repeat(3,1fr);" id="productGallery">
           <!-- More photos of this racket can be added here the same way as the homepage Gallery section -->
@@ -626,5 +626,109 @@
 <a id="waBtn" href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4c-4.9 0-8.88 3.98-8.88 8.88 0 1.57.41 3.1 1.19 4.44L3 21l3.8-1.33a8.84 8.84 0 0 0 5.25 1.71h.01c4.9 0 8.88-3.98 8.88-8.88a8.83 8.83 0 0 0-3.34-6.18Zm-5.55 13.65h-.01a7.37 7.37 0 0 1-4.5-1.55l-.32-.19-3.15.83.84-3.07-.21-.32a7.36 7.36 0 0 1-1.13-3.94 7.4 7.4 0 0 1 12.63-5.22 7.35 7.35 0 0 1 2.17 5.23c0 4.08-3.32 7.39-7.32 7.39v.02Zm4.04-5.53c-.22-.11-1.31-.65-1.51-.72-.2-.07-.35-.11-.5.11-.15.22-.57.72-.7.87-.13.15-.26.16-.48.05-.22-.11-.94-.35-1.79-1.11-.66-.59-1.11-1.32-1.24-1.54-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.21-.69-1.66-.18-.43-.36-.37-.5-.38-.13 0-.28-.01-.43-.01-.15 0-.39.06-.6.28-.2.22-.79.77-.79 1.87s.81 2.17.92 2.32c.11.15 1.6 2.44 3.87 3.42.54.23.96.37 1.29.48.54.17 1.03.15 1.42.09.43-.06 1.31-.53 1.5-1.05.18-.51.18-.95.13-1.05-.06-.09-.2-.15-.42-.26Z"/></svg>
 </a>
+<style>
+  .lb-clickable{cursor:zoom-in;}
+  #lightbox{
+    position:fixed; inset:0; background:rgba(5,6,9,0.96); z-index:200;
+    display:none; align-items:center; justify-content:center; flex-direction:column;
+  }
+  #lightbox.open{display:flex;}
+  #lightbox img{max-width:88vw; max-height:78vh; object-fit:contain; border-radius:6px;}
+  #lightbox .lb-close{
+    position:absolute; top:20px; right:28px; color:#F5F4F0; font-size:32px;
+    cursor:pointer; line-height:1; z-index:2;
+  }
+  #lightbox .lb-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); color:#F5F4F0;
+    font-size:40px; cursor:pointer; padding:10px 16px; user-select:none;
+    background:rgba(255,255,255,0.06); border-radius:50%; line-height:1;
+  }
+  #lightbox .lb-arrow:hover{background:rgba(255,255,255,0.14);}
+  #lightbox .lb-prev{left:18px;}
+  #lightbox .lb-next{right:18px;}
+  #lightbox .lb-counter{color:var(--grey); font-size:12px; margin-top:14px; letter-spacing:0.5px;}
+  @media(max-width:700px){
+    #lightbox .lb-arrow{font-size:28px; padding:8px 12px;}
+    #lightbox .lb-close{font-size:26px; top:14px; right:18px;}
+  }
+</style>
+
+<div id="lightbox">
+  <span class="lb-close" id="lbClose">&times;</span>
+  <span class="lb-arrow lb-prev" id="lbPrev">&#8249;</span>
+  <img id="lbImage" src="" alt="">
+  <span class="lb-arrow lb-next" id="lbNext">&#8250;</span>
+  <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<script>
+(function(){
+  let lbImages = [];
+  let lbIndex = 0;
+
+  function collectGroup(groupSelector){
+    return Array.from(document.querySelectorAll(groupSelector)).map(img => ({
+      src: img.getAttribute('src'),
+      alt: img.getAttribute('alt') || ''
+    }));
+  }
+
+  function openLightbox(images, startIndex){
+    lbImages = images;
+    lbIndex = startIndex;
+    renderLightbox();
+    document.getElementById('lightbox').classList.add('open');
+  }
+
+  function renderLightbox(){
+    const item = lbImages[lbIndex];
+    document.getElementById('lbImage').src = item.src;
+    document.getElementById('lbImage').alt = item.alt;
+    document.getElementById('lbCounter').textContent = (lbIndex+1) + ' / ' + lbImages.length;
+  }
+
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target.id === 'lightbox') closeLightbox();
+  });
+  document.getElementById('lbPrev').addEventListener('click', () => {
+    lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+    renderLightbox();
+  });
+  document.getElementById('lbNext').addEventListener('click', () => {
+    lbIndex = (lbIndex + 1) % lbImages.length;
+    renderLightbox();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+  });
+
+  // Wire up any group of clickable images sharing the same data-lb-group value
+  const groups = {};
+  document.querySelectorAll('[data-lb-group]').forEach(img => {
+    const group = img.dataset.lbGroup;
+    if (!groups[group]) groups[group] = [];
+    groups[group].push(img);
+  });
+  Object.keys(groups).forEach(groupName => {
+    const imgs = groups[groupName];
+    imgs.forEach((img, i) => {
+      img.classList.add('lb-clickable');
+      img.addEventListener('click', () => {
+        const images = imgs.map(el => ({src: el.getAttribute('src'), alt: el.getAttribute('alt')||''}));
+        openLightbox(images, i);
+      });
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
