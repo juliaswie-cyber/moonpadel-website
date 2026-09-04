@@ -268,7 +268,6 @@
 <body>
 
 <header>
-<header>
   <nav class="wrap">
     <a href="index.html#top" class="logo">
       <img src="images/logo.png" alt="Moon Padel" style="height:22px; width:auto; display:block;">
@@ -279,11 +278,13 @@
         <a href="index.html#about">About Us</a>
       </div>
       <div class="dropdown">
+        <a href="index.html#compare">Compare Racket Models</a>
+      </div>
+      <div class="dropdown">
         <a href="index.html#shop">Shop</a>
         <div class="menu">
           <a href="index.html#shop">Rackets</a>
           <a href="index.html#shop">Overgrips</a>
-          <a href="index.html#shop">Find Your Racket</a>
         </div>
       </div>
       <div class="dropdown">
@@ -310,9 +311,9 @@
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow">Compare</div>
-      <h2>Find Your Racket</h2>
+      <h2>Compare Racket Models</h2>
       <p style="color:var(--grey); font-size:13px; margin-top:10px; max-width:480px; margin-left:auto; margin-right:auto;">
-        Every Moon Padel racket, side by side. Not sure where to start? Take the quiz below.
+        Every Moon Padel racket, side by side. Still not sure? Talk to our experts below and we'll help you decide.
       </p>
     </div>
     <div style="overflow-x:auto;">
@@ -356,166 +357,18 @@
   </div>
 </section>
 
-<section class="section" id="quiz" style="background:var(--charcoal);">
-  <div class="wrap" style="max-width:640px;">
-    <div class="section-head">
-      <div class="eyebrow">In-Depth Quiz</div>
-      <h2>Which Racket Is Right For You?</h2>
-      <p style="color:var(--grey); font-size:12.5px; margin-top:8px;">A few honest questions about your game - takes about a minute.</p>
-    </div>
-
-    <div id="quizBox">
-
-      <div class="quiz-step" data-step="0">
-        <div style="text-align:center; font-size:14px; margin-bottom:20px;">How would you describe your padel experience?</div>
-        <div class="quiz-options">
-          <button class="quiz-opt" data-scores="lunar:2,eclipse:2">Beginner - still learning the basics</button>
-          <button class="quiz-opt" data-scores="lunar:1,eclipse:2">Improver - comfortable with the fundamentals</button>
-          <button class="quiz-opt" data-scores="supernova:2,eclipse:1">Intermediate - I play regularly and know my game</button>
-          <button class="quiz-opt" data-scores="supernovax:2,supernova:1">Advanced / Competitive - I play to win</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="1" style="display:none;">
-        <div style="text-align:center; font-size:14px; margin-bottom:20px;">What matters most to you in a racket?</div>
-        <div class="quiz-options">
-          <button class="quiz-opt" data-scores="lunar:2">Comfort - I want the game to feel easy</button>
-          <button class="quiz-opt" data-scores="eclipse:2">Control - I want precision on every shot</button>
-          <button class="quiz-opt" data-scores="supernova:2">Balance - a bit of everything</button>
-          <button class="quiz-opt" data-scores="supernovax:2">Power - I want to attack and finish points</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="2" style="display:none;">
-        <div style="text-align:center; font-size:14px; margin-bottom:20px;">Where do you naturally prefer to play on the court?</div>
-        <div class="quiz-options">
-          <button class="quiz-opt" data-scores="lunar:2,eclipse:1">Back of the court, defending and resetting</button>
-          <button class="quiz-opt" data-scores="eclipse:1,supernova:2">A mix of defence and attack</button>
-          <button class="quiz-opt" data-scores="supernovax:2,supernova:1">At the net, looking to finish</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="3" style="display:none;">
-        <div style="text-align:center; font-size:14px; margin-bottom:20px;">How would you describe your shot style?</div>
-        <div class="quiz-options">
-          <button class="quiz-opt" data-scores="lunar:2">Soft, controlled touch shots</button>
-          <button class="quiz-opt" data-scores="eclipse:2">Precise, placed shots over raw power</button>
-          <button class="quiz-opt" data-scores="supernova:2">A mix of placement and power</button>
-          <button class="quiz-opt" data-scores="supernovax:2">Explosive, hard-hitting shots</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="4" style="display:none;">
-        <div style="text-align:center; font-size:14px; margin-bottom:20px;">Do you want a bigger sweet spot for consistency, or a smaller, more powerful one?</div>
-        <div class="quiz-options">
-          <button class="quiz-opt" data-scores="eclipse:2,lunar:1">Bigger sweet spot - I want forgiveness on off-centre hits</button>
-          <button class="quiz-opt" data-scores="supernova:1">Doesn't matter much to me</button>
-          <button class="quiz-opt" data-scores="supernovax:2,supernova:1">Smaller, more powerful sweet spot</button>
-        </div>
-      </div>
-
-      <div class="quiz-step" data-step="5" style="display:none;">
-        <div style="text-align:center; font-size:14px; margin-bottom:20px;">Last one - what's your priority when the ball's coming at pace?</div>
-        <div class="quiz-options">
-          <button class="quiz-opt" data-scores="lunar:2,eclipse:1">Absorb it comfortably and reset the point</button>
-          <button class="quiz-opt" data-scores="eclipse:2">Stay in control and place my return precisely</button>
-          <button class="quiz-opt" data-scores="supernova:2">Match the pace and keep options open</button>
-          <button class="quiz-opt" data-scores="supernovax:2">Meet it head-on and hit through it</button>
-        </div>
-      </div>
-
-      <div id="quizResult" style="display:none; text-align:center;">
-        <div style="color:var(--grey); font-size:12px; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">Your Match</div>
-        <div id="quizResultCard"></div>
-        <div style="margin-top:20px;"><span id="quizRestart" style="font-size:11px; color:var(--grey); text-decoration:underline; cursor:pointer;">Start over</span></div>
-      </div>
-
-      <div style="text-align:center; margin-top:20px;">
-        <div id="quizProgress" style="font-size:10px; color:var(--grey); letter-spacing:0.5px;">Question 1 of 6</div>
-      </div>
-    </div>
+<section class="section" style="background:var(--charcoal); text-align:center;">
+  <div class="wrap" style="max-width:480px;">
+    <h2 class="serif" style="font-size:26px; font-weight:500; margin-bottom:12px;">Still deciding?</h2>
+    <p style="color:var(--grey); font-size:13.5px; line-height:1.7; margin-bottom:24px;">Talk to our experts and we can help you decide what racket is most suited for you.</p>
+    <!-- Replace YOUR_PHONE_NUMBER with your number in international format, no + or spaces, e.g. 447123456789 -->
+    <a href="https://wa.me/YOUR_PHONE_NUMBER" target="_blank" rel="noopener" class="btn btn-filled" style="display:inline-flex; align-items:center; gap:8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4c-4.9 0-8.88 3.98-8.88 8.88 0 1.57.41 3.1 1.19 4.44L3 21l3.8-1.33a8.84 8.84 0 0 0 5.25 1.71h.01c4.9 0 8.88-3.98 8.88-8.88a8.83 8.83 0 0 0-3.34-6.18Z" fill="#0B0E14"/></svg>
+      Chat With Us on WhatsApp
+    </a>
   </div>
 </section>
 
-<style>
-  .quiz-options{display:flex; flex-direction:column; gap:10px;}
-  .quiz-opt{
-    background:#14181F; border:1px solid var(--card-border); color:var(--white);
-    padding:14px 18px; border-radius:8px; font-size:13px; text-align:left; cursor:pointer;
-    font-family:'Inter',sans-serif; transition:border-color .2s, background .2s;
-  }
-  .quiz-opt:hover{border-color:#5a5f6a; background:#1a1f28;}
-</style>
-
-<script>
-(function(){
-  const RACKET_INFO = {
-    lunar: {name:"Lunar", price:"£175", tag:"Comfort & Forgiveness", img:"images/lunar.jpg", page:"lunar.html"},
-    eclipse: {name:"Eclipse", price:"£185", tag:"Maximum Control", img:"images/eclipse.jpg", page:"eclipse.html"},
-    supernova: {name:"Supernova", price:"£205", tag:"Power + Control", img:"images/supernova.jpg", page:"supernova.html"},
-    supernovax: {name:"Supernova X", price:"£225", tag:"Maximum Power", img:"images/supernovax.jpg", page:"supernovax.html"},
-  };
-
-  let scores = {lunar:0, eclipse:0, supernova:0, supernovax:0};
-  let currentStep = 0;
-  const totalSteps = 6;
-
-  function updateProgress(){
-    const el = document.getElementById('quizProgress');
-    if (el) el.textContent = 'Question ' + Math.min(currentStep+1, totalSteps) + ' of ' + totalSteps;
-  }
-  updateProgress();
-
-  document.querySelectorAll('.quiz-opt').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const pairs = btn.dataset.scores.split(',');
-      pairs.forEach(p => {
-        const [id, val] = p.split(':');
-        scores[id] += parseInt(val, 10);
-      });
-      currentStep++;
-      if (currentStep < totalSteps) {
-        document.querySelectorAll('.quiz-step').forEach(s => s.style.display = 'none');
-        document.querySelector('.quiz-step[data-step="' + currentStep + '"]').style.display = 'block';
-        updateProgress();
-      } else {
-        document.getElementById('quizProgress').style.display = 'none';
-        showResult();
-      }
-    });
-  });
-
-  function showResult(){
-    document.querySelectorAll('.quiz-step').forEach(s => s.style.display = 'none');
-    const winnerId = Object.keys(scores).reduce((a,b) => scores[a] >= scores[b] ? a : b);
-    const r = RACKET_INFO[winnerId];
-    document.getElementById('quizResultCard').innerHTML = `
-      <a href="${r.page}" style="text-decoration:none; color:inherit;">
-        <div style="max-width:250px; margin:0 auto; background:#0B0E14; border:1px solid var(--card-border); border-radius:10px; padding:20px;">
-          <div style="height:170px; border-radius:6px; overflow:hidden; background:#0d0f13; margin-bottom:14px;">
-            <img src="${r.img}" alt="${r.name}" style="width:100%; height:100%; object-fit:cover; object-position:top center;">
-          </div>
-          <div class="serif" style="font-size:22px; color:var(--white);">${r.name}</div>
-          <div style="font-size:11px; color:var(--grey); margin:4px 0 10px;">${r.tag}</div>
-          <div style="font-size:14px; color:var(--white); margin-bottom:14px;">${r.price}</div>
-          <span style="background:#E8E6E0; color:#0B0E14; font-size:10px; padding:9px 18px; border-radius:2px; letter-spacing:0.5px; text-transform:uppercase;">View Racket</span>
-        </div>
-      </a>
-    `;
-    document.getElementById('quizResult').style.display = 'block';
-  }
-
-  document.getElementById('quizRestart').addEventListener('click', () => {
-    scores = {lunar:0, eclipse:0, supernova:0, supernovax:0};
-    currentStep = 0;
-    document.getElementById('quizResult').style.display = 'none';
-    document.getElementById('quizProgress').style.display = 'block';
-    document.querySelectorAll('.quiz-step').forEach(s => s.style.display = 'none');
-    document.querySelector('.quiz-step[data-step="0"]').style.display = 'block';
-    updateProgress();
-  });
-})();
-</script>
 <footer id="blog">
   <a href="index.html#top" class="logo">
     <img src="images/logo.png" alt="Moon Padel" style="height:26px; width:auto; display:block;">
