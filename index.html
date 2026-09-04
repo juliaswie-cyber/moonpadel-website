@@ -49,7 +49,7 @@
     backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(255,255,255,0.08);
   }
-  nav{display:flex; align-items:center; justify-content:space-between; padding:140px 28px;}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:200px 28px;}
   .logo{display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond',serif; font-size:19px; letter-spacing:2px;}
   .logo svg{width:22px; height:22px;}
   .navlinks{display:flex; gap:34px; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--grey);}
@@ -199,7 +199,7 @@
   .cart-head .close{cursor:pointer; color:var(--grey); font-size:20px; line-height:1;}
   .cart-items{flex:1; overflow-y:auto; padding:16px 24px;}
   .cart-item{display:flex; gap:12px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06);}
-  .cart-item img{width:56px; height:56px; object-fit:cover; border-radius:5px; background:#0d0f13;}
+  .cart-item img{width:56px; height:56px; object-fit:cover; object-position:top center; border-radius:5px; background:#0d0f13;}
   .cart-item-info{flex:1;}
   .cart-item-info .name{font-size:13px; margin-bottom:4px;}
   .cart-item-info .price{font-size:11px; color:var(--grey);}
@@ -215,25 +215,60 @@
   #checkoutBtn:disabled{opacity:0.4; cursor:not-allowed;}
   #checkoutMsg{font-size:11px; color:var(--grey); margin-top:10px; text-align:center;}
 
-  #emailBar{
-    background:linear-gradient(90deg,#14181F,#1c2029);
-    border-bottom:1px solid var(--card-border);
-    padding:12px 20px; text-align:center; font-size:12px; color:var(--white);
-    display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap;
+  /* Wheel-spin popup */
+  #wheelOverlay{
+    position:fixed; inset:0; background:rgba(5,6,9,0.55); z-index:150;
+    display:none;
   }
-  #emailBar.hidden{display:none;}
-  #emailBar form{display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
-  #emailBar input[type=email]{
-    background:var(--navy); border:1px solid #3a3f4a; color:var(--white);
-    padding:8px 12px; font-size:12px; border-radius:3px; width:200px;
+  #wheelOverlay.open{display:block;}
+  #wheelPopup{
+    position:fixed; top:50%; right:24px; transform:translateY(-50%);
+    width:320px; max-width:88vw; background:#14181F; border:1px solid var(--card-border);
+    border-radius:14px; z-index:151; padding:26px 22px; text-align:center;
+    display:none; box-shadow:0 20px 60px rgba(0,0,0,0.5);
   }
-  #emailBar button{
-    background:var(--olive); color:var(--olive-ink); border:none; padding:8px 16px;
+  #wheelPopup.open{display:block;}
+  #wheelClose{position:absolute; top:12px; right:16px; color:var(--grey); cursor:pointer; font-size:20px;}
+  #wheelPopup h3{font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:500; color:var(--white); margin-bottom:6px;}
+  #wheelPopup p{font-size:12px; color:var(--grey); margin-bottom:18px;}
+  .wheel-wrap{position:relative; width:220px; height:220px; margin:0 auto 20px;}
+  .wheel-pointer{
+    position:absolute; top:-8px; left:50%; transform:translateX(-50%);
+    width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent;
+    border-top:16px solid #E8E6E0; z-index:3;
+  }
+  #wheelDisc{
+    width:220px; height:220px; border-radius:50%; position:relative;
+    border:4px solid #2a2f3a;
+    background: conic-gradient(from 0deg, #3a2560 0deg 90deg, #1f3a2e 90deg 180deg, #1c3a4a 180deg 270deg, #2a2f3a 270deg 360deg);
+    transition: transform 4.2s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+  }
+  .wheel-label{
+    position:absolute; top:50%; left:50%; width:90px; text-align:center;
+    font-size:9.5px; font-weight:600; color:#F5F4F0; letter-spacing:0.3px;
+    transform-origin:0 0;
+  }
+  #wheelCenter{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:44px; height:44px; border-radius:50%; background:#0B0E14; border:2px solid #3a3f4a;
+    display:flex; align-items:center; justify-content:center; z-index:2;
+  }
+  #wheelSpinBtn{
+    background:#E8E6E0; color:#0B0E14; border:none; padding:12px 30px; border-radius:2px;
+    font-size:11px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; font-family:'Inter',sans-serif;
+  }
+  #wheelSpinBtn:disabled{opacity:0.5; cursor:not-allowed;}
+  #wheelResult{display:none;}
+  #wheelResult .prize-name{font-family:'Cormorant Garamond',serif; font-size:24px; color:#E8E6E0; margin:8px 0 16px;}
+  #wheelResult input[type=email]{
+    width:100%; background:var(--navy); border:1px solid #3a3f4a; color:var(--white);
+    padding:10px 12px; font-size:12px; border-radius:3px; margin-bottom:10px; box-sizing:border-box;
+  }
+  #wheelResult button{
+    width:100%; background:var(--olive); color:var(--olive-ink); border:none; padding:12px;
     font-size:11px; letter-spacing:0.5px; border-radius:3px; cursor:pointer; text-transform:uppercase;
   }
-  #emailBar .dismiss{position:absolute; right:16px; color:var(--grey); cursor:pointer; font-size:16px;}
-  #emailBar{position:relative;}
-  #emailSuccess{display:none; font-size:12px; color:var(--olive);}
+  #wheelClaimSuccess{display:none; font-size:12px; color:var(--olive); margin-top:10px; line-height:1.6;}
 
   #waBtn{
     position:fixed; bottom:24px; right:24px; z-index:80;
@@ -304,16 +339,38 @@
     </div>
   </nav>
 </header>
-<div id="emailBar">
-  <span class="dismiss" id="emailDismiss">&times;</span>
-  <span>Get 10% off your first order - join the list.</span>
-  <form id="emailForm" name="email-signup" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="email-signup" />
-    <input type="text" name="bot-field" style="display:none" />
-    <input type="email" name="email" id="emailInput" placeholder="you@email.com" required>
-    <button type="submit">Get 10% Off</button>
-  </form>
-  <span id="emailSuccess">Thanks! Use code <strong>WELCOME10</strong> at checkout.</span>
+<div id="wheelOverlay"></div>
+<div id="wheelPopup">
+  <span id="wheelClose">&times;</span>
+
+  <div id="wheelSpinView">
+    <h3>Spin to Win</h3>
+    <p>Free entry - one spin per visitor.</p>
+    <div class="wheel-wrap">
+      <div class="wheel-pointer"></div>
+      <div id="wheelDisc">
+        <div class="wheel-label" id="label0">FREE<br>RACKET</div>
+        <div class="wheel-label" id="label1">FREE<br>GRIPS</div>
+        <div class="wheel-label" id="label2">20%<br>OFF</div>
+        <div class="wheel-label" id="label3">10%<br>OFF</div>
+      </div>
+      <div id="wheelCenter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 3a9 9 0 1 0 0 18 8.99 8.99 0 0 1 0-18Z" stroke="#F5F4F0" stroke-width="1.3"/></svg></div>
+    </div>
+    <button id="wheelSpinBtn">Spin the Wheel</button>
+  </div>
+
+  <div id="wheelResult">
+    <div style="font-size:11px; color:var(--grey); letter-spacing:1px; text-transform:uppercase;">You won</div>
+    <div class="prize-name" id="wheelPrizeName"></div>
+    <form id="wheelForm" name="wheel-spin" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="wheel-spin" />
+      <input type="hidden" name="prize" id="wheelPrizeField" value="" />
+      <input type="text" name="bot-field" style="display:none" />
+      <input type="email" name="email" id="wheelEmailInput" placeholder="you@email.com" required>
+      <button type="submit">Claim Prize</button>
+    </form>
+    <div id="wheelClaimSuccess"></div>
+  </div>
 </div>
 
 
@@ -327,7 +384,7 @@
   </div>
 </section>
 
-<div class="strip">HANDMADE IN SPAIN &nbsp;·&nbsp; EU CERTIFIED MATERIALS &nbsp;·&nbsp; TRUSTED BY 40+ PLAYERS</div>
+<div class="strip">HANDMADE IN SPAIN &nbsp;·&nbsp; EU CERTIFIED MATERIALS</div>
 
 <section id="about" class="section" style="background:var(--charcoal);">
   <div class="wrap" style="max-width:640px; text-align:center;">
@@ -712,30 +769,97 @@
 </script>
 
 <script>
-  (function(){
-    const bar = document.getElementById('emailBar');
-    const dismissed = localStorage.getItem('moonpadel_email_dismissed');
-    if (dismissed) bar.classList.add('hidden');
+(function(){
+  const overlay = document.getElementById('wheelOverlay');
+  const popup = document.getElementById('wheelPopup');
+  const dismissed = localStorage.getItem('moonpadel_wheel_dismissed');
 
-    document.getElementById('emailDismiss').addEventListener('click', () => {
-      bar.classList.add('hidden');
-      localStorage.setItem('moonpadel_email_dismissed', '1');
-    });
+  function openWheel(){
+    overlay.classList.add('open');
+    popup.classList.add('open');
+  }
+  function closeWheel(){
+    overlay.classList.remove('open');
+    popup.classList.remove('open');
+    localStorage.setItem('moonpadel_wheel_dismissed', '1');
+  }
 
-    document.getElementById('emailForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      localStorage.setItem('moonpadel_known_email', data.get('email'));
-      fetch('/', { method: 'POST', body: new URLSearchParams(data) })
-        .then(() => {
-          form.style.display = 'none';
-          document.getElementById('emailSuccess').style.display = 'inline';
-          localStorage.setItem('moonpadel_email_dismissed', '1');
-        })
-        .catch(() => { alert('Something went wrong - please try again.'); });
-    });
-  })();
+  if (!dismissed) {
+    setTimeout(openWheel, 2500);
+  }
+
+  document.getElementById('wheelClose').addEventListener('click', closeWheel);
+  overlay.addEventListener('click', closeWheel);
+
+  // Position the 4 labels around the wheel, matching the conic-gradient segments
+  // Segment centres: 45deg, 135deg, 225deg, 315deg (clockwise from top)
+  const labelAngles = [45, 135, 225, 315];
+  labelAngles.forEach((angle, i) => {
+    const label = document.getElementById('label' + i);
+    // place label along the radius at ~62px from centre, rotated to sit upright-ish in its wedge
+    const rad = (angle - 90) * Math.PI / 180;
+    const r = 62;
+    const x = 110 + r * Math.cos(rad);
+    const y = 110 + r * Math.sin(rad);
+    label.style.left = x + 'px';
+    label.style.top = y + 'px';
+    label.style.transform = 'translate(-50%,-50%)';
+  });
+
+  // Prizes: id, label, weight (%), segment centre angle
+  const PRIZES = [
+    { id: 'racket', label: 'a Free Racket',        weight: 0.0001, angle: 45  },
+    { id: 'grips',  label: 'a Free Pack of Grips', weight: 1,      angle: 135 },
+    { id: 'off20',  label: '20% Off',              weight: 15,     angle: 225 },
+    { id: 'off10',  label: '10% Off',              weight: 84,     angle: 315 },
+  ];
+
+  function pickPrize(){
+    const r = Math.random() * 100;
+    let cumulative = 0;
+    for (const p of PRIZES) {
+      cumulative += p.weight;
+      if (r <= cumulative) return p;
+    }
+    return PRIZES[PRIZES.length - 1];
+  }
+
+  let hasSpun = false;
+  document.getElementById('wheelSpinBtn').addEventListener('click', function(){
+    if (hasSpun) return;
+    hasSpun = true;
+    this.disabled = true;
+
+    const prize = pickPrize();
+    const disc = document.getElementById('wheelDisc');
+    const extraSpins = 5 * 360;
+    const rotation = extraSpins + ((360 - prize.angle) % 360);
+    disc.style.transform = 'rotate(' + rotation + 'deg)';
+
+    setTimeout(() => {
+      document.getElementById('wheelSpinView').style.display = 'none';
+      document.getElementById('wheelResult').style.display = 'block';
+      document.getElementById('wheelPrizeName').textContent = prize.label;
+      document.getElementById('wheelPrizeField').value = prize.label;
+    }, 4400);
+  });
+
+  document.getElementById('wheelForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    localStorage.setItem('moonpadel_known_email', data.get('email'));
+    fetch('/', { method: 'POST', body: new URLSearchParams(data) })
+      .then(() => {
+        form.style.display = 'none';
+        const msg = document.getElementById('wheelClaimSuccess');
+        msg.style.display = 'block';
+        msg.textContent = "Thanks! We've sent your code to your email - check your inbox shortly.";
+        localStorage.setItem('moonpadel_wheel_dismissed', '1');
+      })
+      .catch(() => { alert('Something went wrong - please try again.'); });
+  });
+})();
 </script>
 
 <!-- Replace YOUR_PHONE_NUMBER with your number in international format, no + or spaces, e.g. 447123456789 -->

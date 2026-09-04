@@ -49,7 +49,7 @@
     backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(255,255,255,0.08);
   }
-  nav{display:flex; align-items:center; justify-content:space-between; padding:140px 28px;}
+  nav{display:flex; align-items:center; justify-content:space-between; padding:200px 28px;}
   .logo{display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond',serif; font-size:19px; letter-spacing:2px;}
   .logo svg{width:22px; height:22px;}
   .navlinks{display:flex; gap:34px; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--grey);}
@@ -199,7 +199,7 @@
   .cart-head .close{cursor:pointer; color:var(--grey); font-size:20px; line-height:1;}
   .cart-items{flex:1; overflow-y:auto; padding:16px 24px;}
   .cart-item{display:flex; gap:12px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,0.06);}
-  .cart-item img{width:56px; height:56px; object-fit:cover; border-radius:5px; background:#0d0f13;}
+  .cart-item img{width:56px; height:56px; object-fit:cover; object-position:top center; border-radius:5px; background:#0d0f13;}
   .cart-item-info{flex:1;}
   .cart-item-info .name{font-size:13px; margin-bottom:4px;}
   .cart-item-info .price{font-size:11px; color:var(--grey);}
@@ -315,16 +315,17 @@
         </div>
         <div class="gallery-grid" style="margin-top:12px; grid-template-columns:repeat(3,1fr);" id="productGallery">
           <!-- More photos of this racket can be added here the same way as the homepage Gallery section -->
-          <div class="gallery-item"><img src="images/eclipse-action-2.jpg" alt="Eclipse racket in action on court, volley" data-lb-group="product-gallery"></div>
-          <div class="gallery-item"><img src="images/eclipse-action-1.jpg" alt="Eclipse racket in action on court, serve" data-lb-group="product-gallery"></div>
-          <div class="gallery-item"><img src="images/eclipse-detail-1.jpg" alt="Eclipse racket close-up detail" data-lb-group="product-gallery"></div>
+          <div class="gallery-item"><img src="images/eclipse-photo2.jpg" alt="Eclipse racket close-up, held" data-lb-group="product-gallery"></div>
+          <div class="gallery-item"><img src="images/eclipse-photo3.jpg" alt="Eclipse racket close-up detail" data-lb-group="product-gallery"></div>
+          <div class="gallery-item"><img src="images/eclipse-photo4.jpg" alt="Eclipse racket in action, serve" data-lb-group="product-gallery"></div>
+          <div class="gallery-item"><img src="images/eclipse-photo5.jpg" alt="Eclipse racket in action, forehand" data-lb-group="product-gallery"></div>
         </div>
       </div>
       <div>
         <div style="color:var(--grey); font-size:11px; letter-spacing:1.5px; margin-bottom:10px;">MAXIMUM CONTROL</div>
         <h1 class="serif" style="font-size:44px; font-weight:500; margin-bottom:12px;">Eclipse</h1>
         <div style="font-size:20px; margin-bottom:16px;">£185</div>
-        <div class="serif" style="font-size:16px; color:#E8E6E0; font-style:italic; margin-bottom:16px;">Precision. Balance. Confidence.</div>
+        <div style="font-size:13px; letter-spacing:1px; text-transform:uppercase; color:#E8E6E0; font-weight:600; margin-bottom:16px;">Precision. Balance. Confidence.</div>
         <p style="color:var(--grey); font-size:14px; line-height:1.7; margin-bottom:18px;">Composed, stable and precise with a forgiving centred sweet spot.</p>
         <div style="margin-bottom:24px;"><span style="border:0.5px solid #3a3f4a; color:var(--grey); font-size:10px; padding:6px 12px; border-radius:14px; margin-right:6px; display:inline-block; margin-bottom:6px;">12K EU CARBON FIBRE</span><span style="border:0.5px solid #3a3f4a; color:var(--grey); font-size:10px; padding:6px 12px; border-radius:14px; margin-right:6px; display:inline-block; margin-bottom:6px;">ROUND</span><span style="border:0.5px solid #3a3f4a; color:var(--grey); font-size:10px; padding:6px 12px; border-radius:14px; margin-right:6px; display:inline-block; margin-bottom:6px;">MEDIUM-SOFT</span></div>
         <button class="addbtn" data-id="eclipse" style="padding:14px 30px; font-size:11px;">Add to Cart - £185</button>
