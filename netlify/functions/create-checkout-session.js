@@ -46,7 +46,7 @@ exports.handler = async (event) => {
     });
 
     const hasRacket = items.some(({ id }) => RACKET_IDS.has(id));
-    const shippingAmount = hasRacket ? 499 : 299;
+    const shippingAmount = hasRacket ? 599 : 299;
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
