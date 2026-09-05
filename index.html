@@ -50,6 +50,35 @@
     border-bottom:1px solid rgba(255,255,255,0.08);
   }
   nav{display:flex; align-items:center; justify-content:space-between; padding:200px 28px;}
+  /* Mobile nav fixes */
+  .hamburger{display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; z-index:60;}
+  .hamburger span{width:22px; height:2px; background:#F5F4F0; display:block;}
+  #mobileMenu{
+    position:fixed; inset:0; background:#0B0E14; z-index:170;
+    display:none; flex-direction:column; padding:28px 24px; overflow-y:auto;
+  }
+  #mobileMenu.open{display:flex;}
+  #mobileMenu .mm-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:36px;}
+  #mobileMenu .mm-close{font-size:28px; color:#F5F4F0; cursor:pointer;}
+  #mobileMenu a{
+    display:block; padding:16px 0; font-size:16px; color:#F5F4F0;
+    text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.08); letter-spacing:0.3px;
+  }
+  #mobileMenu .mm-sub a{padding-left:16px; font-size:14px; color:var(--grey);}
+
+  @media(max-width:900px){
+    nav{padding:18px 20px !important;}
+    .hamburger{display:flex;}
+  }
+  @media(max-width:520px){
+    .grid4{grid-template-columns:1fr;}
+  }
+  @media(max-width:700px){
+    #compare > .wrap > div[style*="overflow-x:auto"]{display:none;}
+    .compare-mobile{display:flex !important;}
+  }
+
+
   .logo{display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond',serif; font-size:19px; letter-spacing:2px;}
   .logo svg{width:22px; height:22px;}
   .navlinks{display:flex; gap:34px; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--grey);}
@@ -165,9 +194,12 @@
 
   @media(max-width:900px){
     .navlinks{display:none;}
-    .grid4{grid-template-columns:repeat(2,1fr);}
+    .grid4{grid-template-columns:1fr;}
     .craft, .about-split{grid-template-columns:1fr;}
     .about-half{padding:60px 30px;}
+    .overgrip-card{grid-template-columns:1fr !important; text-align:center;}
+    .overgrip-card > div:last-child{text-align:center !important;}
+    .overgrip-card > div:last-child > div:last-child{justify-content:center;}
   }
 
   .racket-art{background:#0d0f13;}
@@ -215,60 +247,6 @@
   #checkoutBtn:disabled{opacity:0.4; cursor:not-allowed;}
   #checkoutMsg{font-size:11px; color:var(--grey); margin-top:10px; text-align:center;}
 
-  /* Wheel-spin popup */
-  #wheelOverlay{
-    position:fixed; inset:0; background:rgba(5,6,9,0.55); z-index:150;
-    display:none;
-  }
-  #wheelOverlay.open{display:block;}
-  #wheelPopup{
-    position:fixed; top:50%; right:24px; transform:translateY(-50%);
-    width:320px; max-width:88vw; background:#14181F; border:1px solid var(--card-border);
-    border-radius:14px; z-index:151; padding:26px 22px; text-align:center;
-    display:none; box-shadow:0 20px 60px rgba(0,0,0,0.5);
-  }
-  #wheelPopup.open{display:block;}
-  #wheelClose{position:absolute; top:12px; right:16px; color:var(--grey); cursor:pointer; font-size:20px;}
-  #wheelPopup h3{font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:500; color:var(--white); margin-bottom:6px;}
-  #wheelPopup p{font-size:12px; color:var(--grey); margin-bottom:18px;}
-  .wheel-wrap{position:relative; width:220px; height:220px; margin:0 auto 20px;}
-  .wheel-pointer{
-    position:absolute; top:-8px; left:50%; transform:translateX(-50%);
-    width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent;
-    border-top:16px solid #E8E6E0; z-index:3;
-  }
-  #wheelDisc{
-    width:220px; height:220px; border-radius:50%; position:relative;
-    border:4px solid #2a2f3a;
-    background: conic-gradient(from 0deg, #3a2560 0deg 90deg, #1f3a2e 90deg 180deg, #1c3a4a 180deg 270deg, #2a2f3a 270deg 360deg);
-    transition: transform 4.2s cubic-bezier(0.17, 0.67, 0.12, 0.99);
-  }
-  .wheel-label{
-    position:absolute; top:50%; left:50%; width:90px; text-align:center;
-    font-size:9.5px; font-weight:600; color:#F5F4F0; letter-spacing:0.3px;
-    transform-origin:0 0;
-  }
-  #wheelCenter{
-    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
-    width:44px; height:44px; border-radius:50%; background:#0B0E14; border:2px solid #3a3f4a;
-    display:flex; align-items:center; justify-content:center; z-index:2;
-  }
-  #wheelSpinBtn{
-    background:#E8E6E0; color:#0B0E14; border:none; padding:12px 30px; border-radius:2px;
-    font-size:11px; letter-spacing:1px; text-transform:uppercase; cursor:pointer; font-family:'Inter',sans-serif;
-  }
-  #wheelSpinBtn:disabled{opacity:0.5; cursor:not-allowed;}
-  #wheelResult{display:none;}
-  #wheelResult .prize-name{font-family:'Cormorant Garamond',serif; font-size:24px; color:#E8E6E0; margin:8px 0 16px;}
-  #wheelResult input[type=email]{
-    width:100%; background:var(--navy); border:1px solid #3a3f4a; color:var(--white);
-    padding:10px 12px; font-size:12px; border-radius:3px; margin-bottom:10px; box-sizing:border-box;
-  }
-  #wheelResult button{
-    width:100%; background:var(--olive); color:var(--olive-ink); border:none; padding:12px;
-    font-size:11px; letter-spacing:0.5px; border-radius:3px; cursor:pointer; text-transform:uppercase;
-  }
-  #wheelClaimSuccess{display:none; font-size:12px; color:var(--olive); margin-top:10px; line-height:1.6;}
 
   #waBtn{
     position:fixed; bottom:24px; right:24px; z-index:80;
@@ -336,40 +314,23 @@
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5F4F0" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       <span id="cartCount">0</span>
     </div>
+    <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
   </nav>
 </header>
-<div id="wheelOverlay"></div>
-<div id="wheelPopup">
-  <span id="wheelClose">&times;</span>
-
-  <div id="wheelSpinView">
-    <h3>Spin to Win</h3>
-    <p>Free entry - one spin per visitor.</p>
-    <div class="wheel-wrap">
-      <div class="wheel-pointer"></div>
-      <div id="wheelDisc">
-        <div class="wheel-label" id="label0">FREE<br>RACKET</div>
-        <div class="wheel-label" id="label1">FREE<br>GRIPS</div>
-        <div class="wheel-label" id="label2">20%<br>OFF</div>
-        <div class="wheel-label" id="label3">10%<br>OFF</div>
-      </div>
-      <div id="wheelCenter"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 3a9 9 0 1 0 0 18 8.99 8.99 0 0 1 0-18Z" stroke="#F5F4F0" stroke-width="1.3"/></svg></div>
-    </div>
-    <button id="wheelSpinBtn">Spin the Wheel</button>
+<div id="mobileMenu">
+  <div class="mm-top">
+    <a href="#top" class="logo" style="font-size:15px;">MOON PADEL</a>
+    <span class="mm-close" id="mobileMenuClose">&times;</span>
   </div>
-
-  <div id="wheelResult">
-    <div style="font-size:11px; color:var(--grey); letter-spacing:1px; text-transform:uppercase;">You won</div>
-    <div class="prize-name" id="wheelPrizeName"></div>
-    <form id="wheelForm" name="wheel-spin" data-netlify="true" netlify-honeypot="bot-field">
-      <input type="hidden" name="form-name" value="wheel-spin" />
-      <input type="hidden" name="prize" id="wheelPrizeField" value="" />
-      <input type="text" name="bot-field" style="display:none" />
-      <input type="email" name="email" id="wheelEmailInput" placeholder="you@email.com" required>
-      <button type="submit">Claim Prize</button>
-    </form>
-    <div id="wheelClaimSuccess"></div>
+  <a href="#about">About Us</a>
+  <a href="#compare">Compare Racket Models</a>
+  <a href="#shop">Shop</a>
+  <div class="mm-sub">
+    <a href="#shop">Rackets</a>
+    <a href="#shop">Overgrips</a>
   </div>
+  <a href="#gallery">Gallery</a>
+  <a href="#blog">Blogs</a>
 </div>
 
 
@@ -457,7 +418,7 @@
         <div class="eyebrow">Accessories</div>
         <h2 style="font-size:28px; font-weight:500;">Overgrips</h2>
       </div>
-      <div style="max-width:640px; margin:0 auto; display:grid; grid-template-columns:220px 1fr; gap:28px; align-items:center; background:var(--charcoal); border:1px solid var(--card-border); border-radius:10px; padding:22px;">
+      <div class="overgrip-card" style="max-width:640px; margin:0 auto; display:grid; grid-template-columns:220px 1fr; gap:28px; align-items:center; background:var(--charcoal); border:1px solid var(--card-border); border-radius:10px; padding:22px;">
         <div style="border-radius:8px; overflow:hidden;"><img src="images/overgrip.jpg" alt="Moon Padel Ultra Premium Overgrip" style="width:100%; display:block;"></div>
         <div style="text-align:left;">
           <h3 style="font-size:20px; font-weight:500; margin-bottom:8px;">Moon Padel Ultra Premium Overgrip</h3>
@@ -569,6 +530,200 @@
         <tbody><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Price</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">£175</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">£185</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">£205</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">£225</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Shape</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Lightweight Hybrid</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Round</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Diamond/Hybrid</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Diamond</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Carbon</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">12K EU Carbon Fibre</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">12K EU Carbon Fibre</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">15K EU Carbon Fibre</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">15K Aluminised Carbon</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Hardness</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Soft</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Medium-Soft</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Medium</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Firm</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Characteristics</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Comfort, forgiveness, extra help at the back of the court</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Control and stability across every part of the court</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">A balance of attacking power and defensive control</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">Maximum power for aggressive, attacking finishers</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Power</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">78</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">82</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">92</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">99</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Hardness</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">75</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">85</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">84</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">96</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Control</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">95</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">99</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">92</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">88</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Ball Output</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">99</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">88</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">86</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">84</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Sweet Spot</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">88</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">99</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">86</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">88</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Spin</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">93</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">86</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">98</td><td style="padding:14px 16px; text-align:center; color:var(--grey); font-size:13px; font-weight:400; border-bottom:1px solid rgba(255,255,255,0.06);">96</td></tr><tr><td style="padding:14px 16px; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Best For</td><td style="padding:14px 16px; text-align:center; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Beginner/intermediate players who value a soft and lightweight racket.</td><td style="padding:14px 16px; text-align:center; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Beginner/intermediate players who prefer a big sweet spot, stability and control.</td><td style="padding:14px 16px; text-align:center; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Intermediate/advanced players who want an all-round performing racket.</td><td style="padding:14px 16px; text-align:center; color:var(--white); font-size:13px; font-weight:500; border-bottom:1px solid rgba(255,255,255,0.06);">Advanced/pro players who want maximum attacking potential.</td></tr></tbody>
       </table>
     </div>
+    <div class="compare-mobile" style="display:none; flex-direction:column; gap:16px;">
+  <div style="background:#14181F; border:1px solid var(--card-border); border-radius:10px; padding:18px;">
+    <a href="lunar.html" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1);">
+      <div style="width:54px; height:54px; border-radius:6px; overflow:hidden; background:#0d0f13; flex-shrink:0;">
+        <img src="images/lunar.jpg" alt="Lunar" style="width:100%; height:100%; object-fit:cover; object-position:top center;">
+      </div>
+      <div>
+        <div class="serif" style="font-size:17px; color:var(--white);">Lunar</div>
+        <div style="font-size:12px; color:var(--grey);">£175</div>
+      </div>
+    </a>
+    <div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Price</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">£175</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Shape</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Lightweight Hybrid</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Carbon</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">12K EU Carbon Fibre</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Hardness</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Soft</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Characteristics</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Comfort, forgiveness, extra help at the back of the court</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Power</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">78</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Hardness</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">75</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Control</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">95</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Ball Output</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">99</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Sweet Spot</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">88</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Spin</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">93</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Best For</span>
+      <span style="color:var(--white); font-size:12px; font-weight:500; text-align:right;">Beginner/intermediate players who value a soft and lightweight racket.</span>
+    </div>
+  </div>
+  <div style="background:#14181F; border:1px solid var(--card-border); border-radius:10px; padding:18px;">
+    <a href="eclipse.html" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1);">
+      <div style="width:54px; height:54px; border-radius:6px; overflow:hidden; background:#0d0f13; flex-shrink:0;">
+        <img src="images/eclipse.jpg" alt="Eclipse" style="width:100%; height:100%; object-fit:cover; object-position:top center;">
+      </div>
+      <div>
+        <div class="serif" style="font-size:17px; color:var(--white);">Eclipse</div>
+        <div style="font-size:12px; color:var(--grey);">£185</div>
+      </div>
+    </a>
+    <div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Price</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">£185</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Shape</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Round</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Carbon</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">12K EU Carbon Fibre</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Hardness</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Medium-Soft</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Characteristics</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Control and stability across every part of the court</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Power</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">82</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Hardness</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">85</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Control</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">99</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Ball Output</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">88</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Sweet Spot</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">99</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Spin</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">86</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Best For</span>
+      <span style="color:var(--white); font-size:12px; font-weight:500; text-align:right;">Beginner/intermediate players who prefer a big sweet spot, stability and control.</span>
+    </div>
+  </div>
+  <div style="background:#14181F; border:1px solid var(--card-border); border-radius:10px; padding:18px;">
+    <a href="supernova.html" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1);">
+      <div style="width:54px; height:54px; border-radius:6px; overflow:hidden; background:#0d0f13; flex-shrink:0;">
+        <img src="images/supernova.jpg" alt="Supernova" style="width:100%; height:100%; object-fit:cover; object-position:top center;">
+      </div>
+      <div>
+        <div class="serif" style="font-size:17px; color:var(--white);">Supernova</div>
+        <div style="font-size:12px; color:var(--grey);">£205</div>
+      </div>
+    </a>
+    <div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Price</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">£205</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Shape</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Diamond/Hybrid</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Carbon</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">15K EU Carbon Fibre</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Hardness</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Medium</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Characteristics</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">A balance of attacking power and defensive control</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Power</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">92</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Hardness</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">84</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Control</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">92</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Ball Output</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">86</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Sweet Spot</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">86</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Spin</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">98</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Best For</span>
+      <span style="color:var(--white); font-size:12px; font-weight:500; text-align:right;">Intermediate/advanced players who want an all-round performing racket.</span>
+    </div>
+  </div>
+  <div style="background:#14181F; border:1px solid var(--card-border); border-radius:10px; padding:18px;">
+    <a href="supernovax.html" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; margin-bottom:12px; padding-bottom:12px; border-bottom:1px solid rgba(255,255,255,0.1);">
+      <div style="width:54px; height:54px; border-radius:6px; overflow:hidden; background:#0d0f13; flex-shrink:0;">
+        <img src="images/supernovax.jpg" alt="Supernova X" style="width:100%; height:100%; object-fit:cover; object-position:top center;">
+      </div>
+      <div>
+        <div class="serif" style="font-size:17px; color:var(--white);">Supernova X</div>
+        <div style="font-size:12px; color:var(--grey);">£225</div>
+      </div>
+    </a>
+    <div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Price</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">£225</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Shape</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Diamond</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Carbon</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">15K Aluminised Carbon</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Hardness</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Firm</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Characteristics</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">Maximum power for aggressive, attacking finishers</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Power</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">99</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Hardness</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">96</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Control</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">88</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Ball Output</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">84</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Sweet Spot</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">88</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Spin</span>
+      <span style="color:var(--grey); font-size:12px; font-weight:400; text-align:right;">96</span>
+    </div><div style="display:flex; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:14px;">
+      <span style="color:var(--grey); font-size:12px;">Best For</span>
+      <span style="color:var(--white); font-size:12px; font-weight:500; text-align:right;">Advanced/pro players who want maximum attacking potential.</span>
+    </div>
+  </div>
+</div>
   </div>
 </section>
 
@@ -777,99 +932,6 @@
   });
 </script>
 
-<script>
-(function(){
-  const overlay = document.getElementById('wheelOverlay');
-  const popup = document.getElementById('wheelPopup');
-  const dismissed = localStorage.getItem('moonpadel_wheel_dismissed');
-
-  function openWheel(){
-    overlay.classList.add('open');
-    popup.classList.add('open');
-  }
-  function closeWheel(){
-    overlay.classList.remove('open');
-    popup.classList.remove('open');
-    localStorage.setItem('moonpadel_wheel_dismissed', '1');
-  }
-
-  if (!dismissed) {
-    setTimeout(openWheel, 2500);
-  }
-
-  document.getElementById('wheelClose').addEventListener('click', closeWheel);
-  overlay.addEventListener('click', closeWheel);
-
-  // Position the 4 labels around the wheel, matching the conic-gradient segments
-  // Segment centres: 45deg, 135deg, 225deg, 315deg (clockwise from top)
-  const labelAngles = [45, 135, 225, 315];
-  labelAngles.forEach((angle, i) => {
-    const label = document.getElementById('label' + i);
-    // place label along the radius at ~62px from centre, rotated to sit upright-ish in its wedge
-    const rad = (angle - 90) * Math.PI / 180;
-    const r = 62;
-    const x = 110 + r * Math.cos(rad);
-    const y = 110 + r * Math.sin(rad);
-    label.style.left = x + 'px';
-    label.style.top = y + 'px';
-    label.style.transform = 'translate(-50%,-50%)';
-  });
-
-  // Prizes: id, label, weight (%), segment centre angle
-  const PRIZES = [
-    { id: 'racket', label: 'a Free Racket',        weight: 0.0001, angle: 45  },
-    { id: 'grips',  label: 'a Free Pack of Grips', weight: 1,      angle: 135 },
-    { id: 'off20',  label: '20% Off',              weight: 15,     angle: 225 },
-    { id: 'off10',  label: '10% Off',              weight: 84,     angle: 315 },
-  ];
-
-  function pickPrize(){
-    const r = Math.random() * 100;
-    let cumulative = 0;
-    for (const p of PRIZES) {
-      cumulative += p.weight;
-      if (r <= cumulative) return p;
-    }
-    return PRIZES[PRIZES.length - 1];
-  }
-
-  let hasSpun = false;
-  document.getElementById('wheelSpinBtn').addEventListener('click', function(){
-    if (hasSpun) return;
-    hasSpun = true;
-    this.disabled = true;
-
-    const prize = pickPrize();
-    const disc = document.getElementById('wheelDisc');
-    const extraSpins = 5 * 360;
-    const rotation = extraSpins + ((360 - prize.angle) % 360);
-    disc.style.transform = 'rotate(' + rotation + 'deg)';
-
-    setTimeout(() => {
-      document.getElementById('wheelSpinView').style.display = 'none';
-      document.getElementById('wheelResult').style.display = 'block';
-      document.getElementById('wheelPrizeName').textContent = prize.label;
-      document.getElementById('wheelPrizeField').value = prize.label;
-    }, 4400);
-  });
-
-  document.getElementById('wheelForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    localStorage.setItem('moonpadel_known_email', data.get('email'));
-    fetch('/', { method: 'POST', body: new URLSearchParams(data) })
-      .then(() => {
-        form.style.display = 'none';
-        const msg = document.getElementById('wheelClaimSuccess');
-        msg.style.display = 'block';
-        msg.textContent = "Thanks! We've sent your code to your email - check your inbox shortly.";
-        localStorage.setItem('moonpadel_wheel_dismissed', '1');
-      })
-      .catch(() => { alert('Something went wrong - please try again.'); });
-  });
-})();
-</script>
 
 <!-- Replace 447915378260 with your number in international format, no + or spaces, e.g. 447123456789 -->
 <a id="waBtn" href="https://wa.me/447915378260" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
@@ -979,5 +1041,18 @@
 })();
 </script>
 
+
+<script>
+(function(){
+  const btn = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  const close = document.getElementById('mobileMenuClose');
+  if (btn && menu && close) {
+    btn.addEventListener('click', () => menu.classList.add('open'));
+    close.addEventListener('click', () => menu.classList.remove('open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  }
+})();
+</script>
 </body>
 </html>

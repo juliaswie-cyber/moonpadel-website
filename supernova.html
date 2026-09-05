@@ -50,6 +50,30 @@
     border-bottom:1px solid rgba(255,255,255,0.08);
   }
   nav{display:flex; align-items:center; justify-content:space-between; padding:200px 28px;}
+  /* Mobile nav fixes */
+  .hamburger{display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; z-index:60;}
+  .hamburger span{width:22px; height:2px; background:#F5F4F0; display:block;}
+  #mobileMenu{
+    position:fixed; inset:0; background:#0B0E14; z-index:170;
+    display:none; flex-direction:column; padding:28px 24px; overflow-y:auto;
+  }
+  #mobileMenu.open{display:flex;}
+  #mobileMenu .mm-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:36px;}
+  #mobileMenu .mm-close{font-size:28px; color:#F5F4F0; cursor:pointer;}
+  #mobileMenu a{
+    display:block; padding:16px 0; font-size:16px; color:#F5F4F0;
+    text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.08); letter-spacing:0.3px;
+  }
+  #mobileMenu .mm-sub a{padding-left:16px; font-size:14px; color:var(--grey);}
+
+  @media(max-width:900px){
+    nav{padding:18px 20px !important;}
+    .hamburger{display:flex;}
+  }
+  @media(max-width:520px){
+    .grid4{grid-template-columns:1fr;}
+  }
+
   .logo{display:flex; align-items:center; gap:10px; font-family:'Cormorant Garamond',serif; font-size:19px; letter-spacing:2px;}
   .logo svg{width:22px; height:22px;}
   .navlinks{display:flex; gap:34px; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--grey);}
@@ -165,9 +189,10 @@
 
   @media(max-width:900px){
     .navlinks{display:none;}
-    .grid4{grid-template-columns:repeat(2,1fr);}
+    .grid4{grid-template-columns:1fr;}
     .craft, .about-split{grid-template-columns:1fr;}
     .about-half{padding:60px 30px;}
+    .product-layout{grid-template-columns:1fr !important; gap:32px !important;}
   }
 
   .racket-art{background:#0d0f13;}
@@ -301,12 +326,29 @@
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5F4F0" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
       <span id="cartCount">0</span>
     </div>
+    <div class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></div>
   </nav>
 </header>
+<div id="mobileMenu">
+  <div class="mm-top">
+    <a href="index.html#top" class="logo" style="font-size:15px;">MOON PADEL</a>
+    <span class="mm-close" id="mobileMenuClose">&times;</span>
+  </div>
+  <a href="index.html#about">About Us</a>
+  <a href="index.html#compare">Compare Racket Models</a>
+  <a href="index.html#shop">Shop</a>
+  <div class="mm-sub">
+    <a href="index.html#shop">Rackets</a>
+    <a href="index.html#shop">Overgrips</a>
+  </div>
+  <a href="index.html#gallery">Gallery</a>
+  <a href="index.html#blog">Blogs</a>
+</div>
+
 
 <section class="section" style="padding-top:60px;">
   <div class="wrap">
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;">
+    <div class="product-layout" style="display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:start;">
       <div>
         <div style="border-radius:10px; overflow:hidden; background:#0d0f13;">
           <img src="images/supernova.jpg" alt="Supernova racket" style="width:100%; display:block;" data-lb-group="product-gallery">
@@ -732,5 +774,18 @@
 })();
 </script>
 
+
+<script>
+(function(){
+  const btn = document.getElementById('hamburgerBtn');
+  const menu = document.getElementById('mobileMenu');
+  const close = document.getElementById('mobileMenuClose');
+  if (btn && menu && close) {
+    btn.addEventListener('click', () => menu.classList.add('open'));
+    close.addEventListener('click', () => menu.classList.remove('open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  }
+})();
+</script>
 </body>
 </html>
