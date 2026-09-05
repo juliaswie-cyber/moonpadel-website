@@ -14,6 +14,9 @@ const CATALOG = {
   overgrip12:  { name: 'Moon Padel Overgrip (12-Pack)', price: 1500 },
 };
 
+// Shipping is £4.99 if the cart contains any racket, otherwise £2.99 (grips only)
+const RACKET_IDS = new Set(['lunar', 'eclipse', 'supernova', 'supernovax']);
+
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method not allowed' };
@@ -42,6 +45,9 @@ exports.handler = async (event) => {
       };
     });
 
+    const hasRacket = items.some(({ id }) => RACKET_IDS.has(id));
+    const shippingAmount = hasRacket ? 499 : 299;
+
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
@@ -49,6 +55,19 @@ exports.handler = async (event) => {
       allow_promotion_codes: true,
       customer_email: email,
       shipping_address_collection: { allowed_countries: ['GB'] },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: shippingAmount, currency: 'gbp' },
+            display_name: 'UK Standard Shipping',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 2 },
+              maximum: { unit: 'business_day', value: 5 },
+            },
+          },
+        },
+      ],
       success_url: `${process.env.URL}/success.html`,
       cancel_url: `${process.env.URL}/`,
     });
